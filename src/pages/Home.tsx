@@ -32,7 +32,7 @@ interface HomeProps {
 export function Home({ theme, options, setOptions, visibility, setVisibility, setResult }: HomeProps) {
     return (
         <>
-            <a href="https://github.com/Hlee50/urlscanlite" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Hlee34/urlscanlite" target="_blank" rel="noopener noreferrer">
                 <img id="github-icon"
                     src={theme === "dark" ? invertocatwhite : invertocatblack}
                     alt="GitHub" />
