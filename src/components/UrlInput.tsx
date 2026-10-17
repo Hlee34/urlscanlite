@@ -42,6 +42,7 @@ export function UrlInput({ options, setOptions, visibility, setVisibility, setRe
 
     const handleOnSubmit = (e : any) => {
         e.preventDefault();
+        scanStarted.current = false;
         navigate(`/scan?url=${encodeURIComponent(scanUrl)}`);
     };
 
