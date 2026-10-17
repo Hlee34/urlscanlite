@@ -1,5 +1,5 @@
-import { NavLink, useSearchParams } from 'react-router'
-import { useState } from 'react'
+import { useNavigate, useSearchParams, useLocation } from 'react-router'
+import { useState, useEffect, useRef } from 'react'
 import { submitScan } from '../api/scan'
 import { Options } from './Options'
 import magnifier from "../assets/images/iconmonstr-magnifier-2-240.png"
@@ -32,30 +32,35 @@ interface UrlInputProps {
 export function UrlInput({ options, setOptions, visibility, setVisibility, setResult }: UrlInputProps) {
     const [searchParams] = useSearchParams();
     const [scanUrl, setScanUrl] = useState(searchParams.get("url") || "");
+    const location = useLocation();
+    const navigate = useNavigate();
+    const scanStarted = useRef(false);
 
     const changeSearchUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
         setScanUrl(event.target.value);
     };
 
-    const scan = () => {
-        submitScan(scanUrl, visibility, setResult);
-    };
-
     const handleOnSubmit = (e : any) => {
         e.preventDefault();
-        scan();
+        navigate(`/scan?url=${encodeURIComponent(scanUrl)}`);
     };
+
+    useEffect(() => {
+        if (location.pathname === "/scan" && !scanStarted.current) {
+            scanStarted.current = true;
+            const queryUrl = searchParams.get("url") ?? "";
+            submitScan(queryUrl, visibility, setResult)
+        }
+    }, [location.pathname, searchParams, visibility, setResult]);   
 
     return (
         <form onSubmit={handleOnSubmit} className="input-container">
             <input className="search-bar" name="scanUrl" placeholder="URL" value={scanUrl} onChange={changeSearchUrl}></input>
 
-            <NavLink to={`/scan?url=${encodeURIComponent(scanUrl)}`} className="scan-link">
-                <button className="scan-button" onClick={scan}>
+                <button className="scan-button">
                     <img id="magnifier" src={magnifier} alt="Scan Icon" />
                     Scan
                 </button>
-            </NavLink>
 
             <Options options={options} setOptions={setOptions} visibility={visibility} setVisibility={setVisibility} />
         </form>
