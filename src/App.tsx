@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import { Home } from "./pages/Home"
 import { ScanResult } from './pages/ScanResult'
 import sun from "./assets/images/iconmonstr-weather-2-240.png"
@@ -48,6 +48,7 @@ function App() {
           setResult={setResult} />} />
         <Route path="/scan" element={<ScanResult options={options} setOptions={setOptions}
           visibility={visibility} setVisibility={setVisibility} result={result} setResult={setResult} />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
