@@ -1,4 +1,5 @@
 import { Header } from '../components/Header'
+import { Skeleton } from '../components/Skeleton';
 import './ScanResult.css'
 
 type Result = {
@@ -33,7 +34,7 @@ export function ScanResult({ options, setOptions, visibility, setVisibility, res
                 visibility={visibility} setVisibility={setVisibility}
                 setResult={setResult} />
 
-            {result === null && <div className="loading-container"><div className="loading" /></div>}
+            {result === null && <Skeleton />}
 
             {result && result.status >= 400 && "message" in result &&
                 <p className="error">{result.message}<br />{result.description}</p>}

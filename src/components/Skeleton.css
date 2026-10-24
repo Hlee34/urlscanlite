@@ -1,0 +1,131 @@
+.skeleton-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    padding-top: 3rem;
+    gap: 1rem;
+}
+
+.skeleton-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    font-size: 150%;
+    animation: fadeIn 1s;
+}
+
+.skeleton-line {
+    position: relative;
+    height: 1.7rem;
+    width: 80%;
+    margin: 0.5rem;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+}
+
+.skeleton-screenshot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    aspect-ratio: 4/3;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+}
+
+.dark .skeleton-line,
+.dark .skeleton-screenshot {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.light .skeleton-line,
+.light .skeleton-screenshot {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skeleton-line::after,
+.skeleton-screenshot::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    transform: translateX(-100%);
+    animation: shimmer 1.5s infinite;
+}
+
+.dark .skeleton-line::after,
+.dark .skeleton-screenshot::after {
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0.1) 60%,
+        rgba(255, 255, 255, 0)
+    );
+}
+
+.light .skeleton-line::after,
+.light .skeleton-screenshot::after {
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.4) 40%,
+        rgba(255, 255, 255, 0.4) 60%,
+        rgba(255, 255, 255, 0)
+    );
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+    .skeleton-result {
+        flex-direction: column;
+        padding-top: 1.5rem;
+    }
+
+    .skeleton-summary {
+        width: 90%;
+        font-size: 100%;
+    }
+
+    .skeleton-line {
+        height: 1.19rem;
+        width: 90%;
+        margin: 0.3rem;
+    }
+
+    .skeleton-screenshot {
+        width: 90%;
+    }
+}
+
+@media (max-height: 480px) and (orientation: landscape) {
+    .skeleton-result {
+        padding-top: 0.5rem;
+    }
+
+    .skeleton-summary {
+        width: 40%;
+        font-size: 90%;
+    }
+
+    .skeleton-line {
+        height: 1rem;
+        margin: 0.3rem;
+    }
+
+    .skeleton-screenshot {
+        width: 40%;
+    }
+}
