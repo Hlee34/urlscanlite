@@ -34,7 +34,11 @@ export function ScanResult({ options, setOptions, visibility, setVisibility, res
                 visibility={visibility} setVisibility={setVisibility}
                 setResult={setResult} />
 
-            {result === null && <Skeleton />}
+            {result === null && 
+                <>
+                    <div className="loading-spinner"></div>
+                    <Skeleton />
+                </>}
 
             {result && result.status >= 400 && "message" in result &&
                 <p className="error">{result.message}<br />{result.description}</p>}
