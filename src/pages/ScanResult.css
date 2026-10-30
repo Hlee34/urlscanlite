@@ -77,8 +77,8 @@
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
-    .loading {
-        width: 3rem;
+    .loading-spinner {
+        display: none;
     }
 
     .error {
@@ -106,12 +106,8 @@
 }
 
 @media (max-height: 480px) and (orientation: landscape) {
-    .loading-container {
-        height: 15rem;
-    }
-
-    .loading {
-        width: 3rem;
+    .loading-spinner {
+        display: none;
     }
 
     .error {
