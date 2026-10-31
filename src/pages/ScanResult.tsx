@@ -28,17 +28,15 @@ interface ScanResultProps {
 }
 
 export function ScanResult({ options, setOptions, visibility, setVisibility, result, setResult }: ScanResultProps) {
+    const isLoading = result === null;
+
     return (
         <>
             <Header options={options} setOptions={setOptions}
                 visibility={visibility} setVisibility={setVisibility}
-                setResult={setResult} />
+                setResult={setResult} isLoading={isLoading}/>
 
-            {result === null && 
-                <>
-                    <div className="loading-spinner"></div>
-                    <Skeleton />
-                </>}
+            {isLoading && <Skeleton />}
 
             {result && result.status >= 400 && "message" in result &&
                 <p className="error">{result.message}<br />{result.description}</p>}

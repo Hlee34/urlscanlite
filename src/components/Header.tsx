@@ -25,9 +25,10 @@ interface HeaderProps {
     visibility: string;
     setVisibility: React.Dispatch<React.SetStateAction<string>>;
     setResult: React.Dispatch<React.SetStateAction<Result | null>>;
+    isLoading: boolean;
 }
 
-export function Header({ options, setOptions, visibility, setVisibility, setResult }: HeaderProps) {
+export function Header({ options, setOptions, visibility, setVisibility, setResult, isLoading }: HeaderProps) {
     return (
         <>
             <div className="header-container">
@@ -38,6 +39,8 @@ export function Header({ options, setOptions, visibility, setVisibility, setResu
                 <UrlInput options={options} setOptions={setOptions}
                     visibility={visibility} setVisibility={setVisibility}
                     setResult={setResult} />
+
+                {isLoading && <div className="loading-spinner"></div>}
             </div>
         </>
     );
