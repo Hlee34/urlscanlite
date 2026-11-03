@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Title } from '../components/Title'
 import { UrlInput } from '../components/UrlInput'
 import invertocatblack from "../assets/images/GitHub_Invertocat_Black.png"
@@ -30,6 +31,10 @@ interface HomeProps {
 }
 
 export function Home({ theme, options, setOptions, visibility, setVisibility, setResult }: HomeProps) {
+    useEffect(() => {
+        document.title = "URL Scan Lite";
+    }, []);
+    
     return (
         <>
             <a href="https://github.com/Hlee34/urlscanlite" target="_blank" rel="noopener noreferrer">

@@ -32,6 +32,7 @@ interface UrlInputProps {
 export function UrlInput({ options, setOptions, visibility, setVisibility, setResult }: UrlInputProps) {
     const [searchParams] = useSearchParams();
     const [scanUrl, setScanUrl] = useState(searchParams.get("url") || "");
+    const queryUrl = searchParams.get("url") ?? "";
     const location = useLocation();
     const navigate = useNavigate();
     const scanStarted = useRef(false);
@@ -49,10 +50,9 @@ export function UrlInput({ options, setOptions, visibility, setVisibility, setRe
     useEffect(() => {
         if (location.pathname === "/scan" && !scanStarted.current) {
             scanStarted.current = true;
-            const queryUrl = searchParams.get("url") ?? "";
             submitScan(queryUrl, visibility, setResult)
         }
-    }, [location.pathname, searchParams, visibility, setResult]);   
+    }, [location.pathname, queryUrl, visibility, setResult]);
 
     return (
         <form onSubmit={handleOnSubmit} className="input-container">

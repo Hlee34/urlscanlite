@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useSearchParams } from 'react-router'
 import { Header } from '../components/Header'
 import { Skeleton } from '../components/Skeleton';
 import './ScanResult.css'
@@ -29,6 +31,14 @@ interface ScanResultProps {
 
 export function ScanResult({ options, setOptions, visibility, setVisibility, result, setResult }: ScanResultProps) {
     const isLoading = result === null;
+    const [searchParams] = useSearchParams();
+    const queryUrl = searchParams.get("url") ?? "";
+
+    useEffect(() => {
+        if (queryUrl.trim()) {
+            document.title = `${queryUrl.trim()} | URL Scan Lite`;
+        }
+    }, [queryUrl]);
 
     return (
         <>
