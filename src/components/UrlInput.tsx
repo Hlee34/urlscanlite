@@ -60,12 +60,12 @@ export function UrlInput({ options, setOptions, visibility, setVisibility, setRe
             <input className="search-bar" ref={searchInputRef} name="scanUrl" placeholder="URL" value={scanUrl} onChange={changeSearchUrl} />
             
             {scanUrl.length > 0 && 
-                <button className="clear-button" title="Clear" onClick={() => {setScanUrl(""); searchInputRef.current?.focus();}}>
+                <button className="clear-button" type="button" title="Clear" onClick={() => {setScanUrl(""); searchInputRef.current?.focus();}}>
                     ×
                 </button>
             }
 
-            <button className="scan-button">
+            <button className="scan-button" type="submit">
                 <img id="magnifier" src={magnifier} alt="Scan Icon" />
                 Scan
             </button>
