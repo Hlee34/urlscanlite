@@ -24,6 +24,10 @@
     font-size: 125%;
 }
 
+.header-container .clear-button {
+    transform: translateY(-55%);
+}
+
 .loading-spinner {
     display: inline-block;
     width: 20px;

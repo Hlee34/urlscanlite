@@ -36,6 +36,7 @@ export function UrlInput({ options, setOptions, visibility, setVisibility, setRe
     const location = useLocation();
     const navigate = useNavigate();
     const scanStarted = useRef(false);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const changeSearchUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
         setScanUrl(event.target.value);
@@ -56,12 +57,18 @@ export function UrlInput({ options, setOptions, visibility, setVisibility, setRe
 
     return (
         <form onSubmit={handleOnSubmit} className="input-container">
-            <input className="search-bar" name="scanUrl" placeholder="URL" value={scanUrl} onChange={changeSearchUrl}></input>
-
-                <button className="scan-button">
-                    <img id="magnifier" src={magnifier} alt="Scan Icon" />
-                    Scan
+            <input className="search-bar" ref={searchInputRef} name="scanUrl" placeholder="URL" value={scanUrl} onChange={changeSearchUrl} />
+            
+            {scanUrl.length > 0 && 
+                <button className="clear-button" title="Clear" onClick={() => {setScanUrl(""); searchInputRef.current?.focus();}}>
+                    ×
                 </button>
+            }
+
+            <button className="scan-button">
+                <img id="magnifier" src={magnifier} alt="Scan Icon" />
+                Scan
+            </button>
 
             <Options options={options} setOptions={setOptions} visibility={visibility} setVisibility={setVisibility} />
         </form>
