@@ -65,7 +65,7 @@ export function ScanResult({ options, setOptions, visibility, setVisibility, res
                         <p>
                             <strong>Verdict: </strong>
                             <span style={{ color: result.malicious ? 'red' : 'limegreen' }}>
-                                {result.malicious ? "Malicious" : "Clean"}
+                                {result.malicious ? "Malicious" : "Benign"}
                             </span>
                         </p>
                     </div>
