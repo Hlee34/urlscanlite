@@ -40,7 +40,11 @@ export function Header({ options, setOptions, visibility, setVisibility, setResu
                     visibility={visibility} setVisibility={setVisibility}
                     setResult={setResult} />
 
-                {isLoading && <div className="loading-spinner"></div>}
+                {isLoading && (
+                    <svg className="loading-spinner" viewBox="0 0 40 40">
+                        <circle className="loading-spinner-arc" cx="20" cy="20" r="15.9155" fill="none" strokeWidth="4" />
+                    </svg>
+                )}
             </div>
         </>
     );

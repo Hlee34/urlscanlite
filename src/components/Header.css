@@ -29,25 +29,40 @@
 }
 
 .loading-spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid transparent;
-    border-top: 3px solid deepskyblue;
-    border-left: 3px solid deepskyblue;
-    border-bottom: 3px solid deepskyblue;
-    border-radius: 50%;
-    margin-top: 0.7rem;
+    width: 28px;
+    height: 28px;
+    margin-top: 0.6rem;
+    transform-origin: center;
     animation: spin 1s linear infinite;
 }
 
+.loading-spinner-arc {
+    stroke: deepskyblue;
+    stroke-dasharray: 1, 100;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
     100% {
         transform: rotate(360deg);
     }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 100;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 75, 100;
+    stroke-dashoffset: -25;
+  }
+  100% {
+    stroke-dasharray: 75, 100;
+    stroke-dashoffset: -100;
+  }
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
